@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  name: gwl-devops-agent-pool
+
+stages:
+  - stage: build
+    displayName: "Build Stage"
+    jobs:
+      - job: build_app
+        displayName: "Build app"
+        steps:
+          - script: echo I am from Build Stage!
+            displayName: 'First Build Stage'
+  - stage: test
+    dependsOn: build
+    displayName: "Test Stage"
+    jobs:
+      - job: test_app
+        displayName: "Test app"
+        steps:
+          - script: echo I am from Test Stage!
+            displayName: 'First Test Stage'
+  - stage: deploy
+    dependsOn: build
+    displayName: "Deploy Stage"
+    jobs:
+      - job: deploy_app
+        displayName: "Deploy app"
+        steps:
+          - script: echo I am from Deploy Stage!
+            displayName: 'First Deploy Stage'
