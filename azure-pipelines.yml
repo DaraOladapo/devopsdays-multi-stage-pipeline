@@ -23,7 +23,7 @@ stages:
           - script: echo I am from Test Stage!
             displayName: 'First Test Stage'
   - stage: deploy
-    dependsOn: build
+    dependsOn: test
     displayName: "Deploy Stage"
     jobs:
       - job: deploy_app
